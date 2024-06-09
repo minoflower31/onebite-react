@@ -1,0 +1,9 @@
+.container {
+  width: 400px;
+  margin: 0 auto;
+}
+
+.container > div {
+  margin-bottom: 8px;
+  padding: 20px 12px;
+}
