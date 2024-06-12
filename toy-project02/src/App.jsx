@@ -48,12 +48,31 @@ function App() {
     setTodos([...todos, newTodo]);
   };
 
+  const onUpdate = (targetId) => {
+    const updatedTodos = todos.map((todo) =>
+      todo.id === targetId
+        ? {
+            ...todo,
+            isDone: !todo.isDone,
+          }
+        : todo,
+    );
+
+    setTodos(updatedTodos);
+  };
+
+  const onDelete = (targetId) => {
+    const deletedTodos = todos.filter((todo) => todo.id !== targetId);
+
+    setTodos(deletedTodos);
+  };
+
   return (
     <>
       <div className={style.container}>
         <Header />
         <Editor onCreate={onCreate} />
-        <List />
+        <List todos={todos} onUpdate={onUpdate} onDelete={onDelete} />
       </div>
     </>
   );
