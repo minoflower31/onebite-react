@@ -1,7 +1,7 @@
 import "./App.module.css";
 
 import style from "./App.module.css";
-import { useReducer, useRef } from "react";
+import { useCallback, useReducer, useRef } from "react";
 import Header from "./components/Header.jsx";
 import Editor from "./components/Editor.jsx";
 import List from "./components/List.jsx";
@@ -59,7 +59,7 @@ function App() {
   const [todos, dispatch] = useReducer(reducer, mockData);
   const idRef = useRef(todos.length);
 
-  const onCreate = (content) => {
+  const onCreate = useCallback((content) => {
     dispatch({
       type: "C",
       data: {
@@ -69,21 +69,21 @@ function App() {
         date: new Date().getTime(),
       },
     });
-  };
+  }, []);
 
-  const onUpdate = (targetId) => {
+  const onUpdate = useCallback((targetId) => {
     dispatch({
       type: "U",
       data: targetId,
     });
-  };
+  }, []);
 
-  const onDelete = (targetId) => {
+  const onDelete = useCallback((targetId) => {
     dispatch({
       type: "D",
       data: targetId,
     });
-  };
+  }, []);
 
   return (
     <>

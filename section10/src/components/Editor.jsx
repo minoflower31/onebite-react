@@ -1,5 +1,5 @@
 import style from "./Editor.module.css";
-import { useRef, useState } from "react";
+import { memo, useRef, useState } from "react";
 
 const Editor = ({ onCreate }) => {
   const [content, setContent] = useState("");
@@ -38,4 +38,4 @@ const Editor = ({ onCreate }) => {
   );
 };
 
-export default Editor;
+export default memo(Editor);
